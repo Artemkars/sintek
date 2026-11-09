@@ -699,6 +699,13 @@ body.modal-open{overflow:hidden}
   .svc .body{padding:18px}
   .svc h3{font-size:20px}
 }
+/* v7: чертёж ККУ */
+.drawing figcaption{align-items:center}
+.seg-sm{margin-top:0;border-width:1.5px}
+.seg-sm{display:inline-flex!important;flex:none}
+.seg-sm button{min-height:34px;padding:6px 12px;font-size:13px;white-space:nowrap;flex:none!important}
+.drawing .tongue{transition:opacity .35s}
+.drawing:not(.with-tongue) .tongue{opacity:0!important;animation:none}
 </style>
 </head>
 <body>
@@ -755,44 +762,65 @@ body.modal-open{overflow:hidden}
       </form>
     </div>
 
-    <figure class="drawing" aria-label="Чертёж фасадного кронштейна ККУ">
-      <svg viewBox="20 40 490 350" fill="none" xmlns="http://www.w3.org/2000/svg" role="img">
-        <g stroke="#9AA4AB" stroke-width="1.2">
-          <line x1="60" y1="40" x2="60" y2="390"/>
-          <line x1="30" y1="60" x2="60" y2="30"/><line x1="30" y1="100" x2="60" y2="70"/><line x1="30" y1="140" x2="60" y2="110"/>
-          <line x1="30" y1="180" x2="60" y2="150"/><line x1="30" y1="220" x2="60" y2="190"/><line x1="30" y1="260" x2="60" y2="230"/>
-          <line x1="30" y1="300" x2="60" y2="270"/><line x1="30" y1="340" x2="60" y2="310"/><line x1="30" y1="380" x2="60" y2="350"/>
+    <figure class="drawing with-tongue js-drawing" aria-label="Чертёж кронштейна ККУ 95×80">
+      <svg viewBox="0 18 520 362" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Кронштейн ККУ: вид сверху, пятка и вид сбоку">
+        <!-- ВИД СВЕРХУ: полка 210×95 -->
+        <path class="draw-line" d="M40 60 H355 V202.5 H40 V181.5 Q56 168 40 154.5 V109.5 Q56 96 40 82.5 Z" stroke="#1D2328" stroke-width="2.2" stroke-linejoin="round" fill="#fff"/>
+        <path class="draw-line" d="M43.5 60 V82.5 Q59.5 96 43.5 109.5 V154.5 Q59.5 168 43.5 181.5 V202.5" stroke="#1D2328" stroke-width="1.2"/>
+        <g class="draw-fade" stroke="#9AA4AB" stroke-width="1.2" stroke-dasharray="7 5">
+          <line x1="50" y1="82.5" x2="355" y2="82.5"/><line x1="50" y1="109.5" x2="355" y2="109.5"/>
+          <line x1="50" y1="154.5" x2="355" y2="154.5"/><line x1="50" y1="181.5" x2="355" y2="181.5"/>
         </g>
-        <rect class="draw-fade" x="60" y="118" width="9" height="164" fill="#CF252F"/>
-        <path class="draw-line" d="M69 118 H440 V146 H83 V282 H69 Z" stroke="#1D2328" stroke-width="3" stroke-linejoin="round" fill="#fff"/>
-        <path class="draw-line" d="M83 146 L200 146 L83 246" stroke="#1D2328" stroke-width="2"/>
-        <g class="draw-fade" stroke="#1D2328" stroke-width="2">
-          <line x1="40" y1="186" x2="98" y2="186"/><rect x="83" y="180" width="12" height="12" fill="#fff"/>
-          <line x1="40" y1="262" x2="98" y2="262"/><rect x="83" y="256" width="12" height="12" fill="#fff"/>
+        <g class="draw-fade" stroke="#1D2328" stroke-width="1.6" fill="#fff">
+          <circle cx="337" cy="69" r="3.2"/><circle cx="337" cy="193.5" r="3.2"/>
         </g>
-        <g class="draw-fade" stroke="#1D2328" stroke-width="1.6">
-          <rect x="300" y="126" width="34" height="12" rx="6"/><rect x="370" y="126" width="34" height="12" rx="6"/>
+        <g class="tongue draw-fade">
+          <path d="M257.5 118 L321 115.5 V144.75 L257.5 142.5 Z" fill="#FBE9EA" stroke="#CF252F" stroke-width="1.8" stroke-linejoin="round"/>
+          <line x1="317" y1="115.7" x2="317" y2="144.6" stroke="#CF252F" stroke-width="1.2"/>
+          <text x="287" y="134" text-anchor="middle" font-family="Golos Text, sans-serif" font-size="12" font-weight="600" fill="#CF252F">язычок</text>
         </g>
-        <g class="draw-fade" stroke="#68737B" stroke-width="1.2">
-          <line x1="83" y1="290" x2="83" y2="330"/><line x1="440" y1="154" x2="440" y2="330"/>
-          <line x1="83" y1="318" x2="440" y2="318"/>
-          <path d="M83 318 l10 -4 v8 z M440 318 l-10 -4 v8 z" fill="#68737B"/>
+        <!-- ПЯТКА: 80×95 -->
+        <path class="draw-line" d="M385 60 H505 V82.5 Q489 96 505 109.5 V154.5 Q489 168 505 181.5 V202.5 H385 Z" stroke="#1D2328" stroke-width="2.2" stroke-linejoin="round" fill="#fff"/>
+        <path class="draw-line" d="M501.5 60 V82.5 Q485.5 96 501.5 109.5 V154.5 Q485.5 168 501.5 181.5 V202.5" stroke="#1D2328" stroke-width="1.2"/>
+        <g class="draw-fade" stroke="#9AA4AB" stroke-width="1.2" stroke-dasharray="7 5">
+          <line x1="385" y1="82.5" x2="494" y2="82.5"/><line x1="385" y1="109.5" x2="494" y2="109.5"/>
+          <line x1="385" y1="154.5" x2="494" y2="154.5"/><line x1="385" y1="181.5" x2="494" y2="181.5"/>
         </g>
-        <text class="draw-fade" x="262" y="308" text-anchor="middle" font-family="IBM Plex Sans Condensed, sans-serif" font-size="17" font-weight="600" fill="#1D2328">L = 50–350 мм</text>
-        <g class="draw-fade" font-family="Golos Text, sans-serif" font-size="14" fill="#1D2328">
-          <line x1="64" y1="104" x2="64" y2="80" stroke="#CF252F" stroke-width="1.4"/>
-          <line x1="64" y1="80" x2="150" y2="80" stroke="#CF252F" stroke-width="1.4"/>
-          <circle cx="64" cy="112" r="3.5" fill="#CF252F"/>
-          <text x="156" y="85">Терморазрыв (паронит)</text>
-          <line x1="420" y1="118" x2="440" y2="96" stroke="#1D2328" stroke-width="1.2"/>
-          <line x1="440" y1="96" x2="500" y2="96" stroke="#1D2328" stroke-width="1.2"/>
-          <text x="500" y="88" text-anchor="end">t = 1,2–2,0 мм</text>
-          <line x1="317" y1="140" x2="317" y2="176" stroke="#1D2328" stroke-width="1.2"/>
-          <text x="317" y="194" text-anchor="middle">Пазы под профиль</text>
-          <text x="96" y="372" fill="#68737B" font-size="13">Сталь оцинкованная, вид сбоку</text>
+        <rect class="draw-fade" x="424" y="121.5" width="45" height="21" rx="10.5" fill="#FBE9EA" stroke="#CF252F" stroke-width="1.8"/>
+        <!-- ВИД СБОКУ -->
+        <path class="draw-line" d="M40 362 V262 A22 22 0 0 1 62 240 H355 V244 H62 A18 18 0 0 0 44 262 V362 Z" stroke="#1D2328" stroke-width="1.8" stroke-linejoin="round" fill="#fff"/>
+        <path class="tongue draw-fade" d="M257.5 240 L312 235 L321 228.5 L323.5 231.5 L314 238.5 L260 243.5 Z" fill="#FBE9EA" stroke="#CF252F" stroke-width="1.6" stroke-linejoin="round"/>
+        <!-- РАЗМЕРЫ -->
+        <g class="draw-fade" stroke="#68737B" stroke-width="1.1">
+          <line x1="40" y1="56" x2="40" y2="38"/><line x1="355" y1="56" x2="355" y2="38"/><line x1="40" y1="44" x2="355" y2="44"/>
+          <line x1="385" y1="56" x2="385" y2="38"/><line x1="505" y1="56" x2="505" y2="38"/><line x1="385" y1="44" x2="505" y2="44"/>
+          <line x1="36" y1="60" x2="16" y2="60"/><line x1="36" y1="202.5" x2="16" y2="202.5"/><line x1="22" y1="60" x2="22" y2="202.5"/>
+          <line x1="339" y1="196" x2="352" y2="216"/><line x1="352" y1="216" x2="372" y2="216"/>
+          <line x1="452" y1="143" x2="452" y2="218"/>
+        </g>
+        <g class="draw-fade" fill="#68737B">
+          <path d="M40 44 l9 -3.5 v7 z M355 44 l-9 -3.5 v7 z M385 44 l9 -3.5 v7 z M505 44 l-9 -3.5 v7 z M22 60 l-3.5 9 h7 z M22 202.5 l-3.5 -9 h7 z"/>
+        </g>
+        <g class="draw-fade" font-family="IBM Plex Sans Condensed, sans-serif" font-size="16" font-weight="600" fill="#1D2328">
+          <text x="197.5" y="38" text-anchor="middle">210</text>
+          <text x="445" y="38" text-anchor="middle">80</text>
+          <text x="16" y="131" text-anchor="middle" transform="rotate(-90 16 131)">95</text>
+          <text x="355" y="212">Ø4</text>
+          <text x="452" y="234" text-anchor="middle">30×14</text>
+        </g>
+        <g class="draw-fade" font-family="Golos Text, sans-serif" font-size="13" fill="#68737B">
+          <text x="40" y="226">вид сверху</text>
+          <text x="385" y="226">пятка</text>
+          <text x="60" y="290">вид сбоку</text>
+          <text x="355" y="300" text-anchor="end">сталь оцинкованная, 2 мм</text>
         </g>
       </svg>
-      <figcaption><span><b>Кронштейн ККУ</b> усиленный, 95×80</span><span style="white-space:nowrap">в наличии на складе</span></figcaption>
+      <figcaption><span><b>Кронштейн ККУ</b> 95×80</span>
+        <span class="seg seg-sm" role="group" aria-label="Вариант кронштейна">
+          <button type="button" data-tongue="1" aria-pressed="true">С язычком</button>
+          <button type="button" data-tongue="0" aria-pressed="false">Без язычка</button>
+        </span>
+      </figcaption>
     </figure>
   </div>
 </section>
@@ -1362,6 +1390,15 @@ body.modal-open{overflow:hidden}
     });
   });
 
+
+  // ---- чертёж: с язычком / без
+  var drw = $('.js-drawing');
+  $$('[data-tongue]', drw).forEach(function (b) {
+    b.addEventListener('click', function () {
+      drw.classList.toggle('with-tongue', b.dataset.tongue === '1');
+      $$('[data-tongue]', drw).forEach(function (x) { x.setAttribute('aria-pressed', x === b); });
+    });
+  });
   // ---- схема слоёв
   var svg = $('.layers-svg');
   function setLayer(n) {
@@ -1420,7 +1457,7 @@ body.modal-open{overflow:hidden}
   }
   area.addEventListener('input', function () { range.value = Math.min(5000, Math.max(50, area.value || 50)); calc(); });
   range.addEventListener('input', function () { area.value = range.value; calc(); });
-  $$('.seg').forEach(function (seg) {
+  $$('.calc .seg').forEach(function (seg) {
     var bs = $$('button', seg);
     bs.forEach(function (b) {
       b.addEventListener('click', function () {
