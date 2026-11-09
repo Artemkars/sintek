@@ -1369,8 +1369,8 @@ body.modal-open{overflow:hidden}
     b.addEventListener('click', function () { toFinalForm(b.dataset.product, b.dataset.product + ' — количество: '); });
   });
 
-  // ---- заявки → Albato (вебхук) → Google Таблица + Telegram
-  var LEAD_WEBHOOK = ''; // ← сюда адрес вебхука из Albato
+  // ---- заявки → ApiX-Drive (вебхук) → Google Таблица + Telegram
+  var LEAD_WEBHOOK = 'https://s7.apix-drive.com/web-hooks/39594/8hqiurr9'; // ApiX-Drive: связь «Sintek лендинг»
   var FORM_NAMES = { hero: 'Первый экран', final: 'Финальная форма', 'popup-3min': 'Попап (3 мин на сайте)', callback: 'Заказать звонок', popup: 'Попап' };
   var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
   // метки из ссылки рекламы запоминаем на всю сессию, даже если человек походил по якорям
