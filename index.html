@@ -1369,16 +1369,53 @@ body.modal-open{overflow:hidden}
     b.addEventListener('click', function () { toFinalForm(b.dataset.product, b.dataset.product + ' — количество: '); });
   });
 
+  // ---- заявки → Albato (вебхук) → Google Таблица + Telegram
+  var LEAD_WEBHOOK = ''; // ← сюда адрес вебхука из Albato
+  var FORM_NAMES = { hero: 'Первый экран', final: 'Финальная форма', 'popup-3min': 'Попап (3 мин на сайте)', callback: 'Заказать звонок', popup: 'Попап' };
+  var UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid'];
+  // метки из ссылки рекламы запоминаем на всю сессию, даже если человек походил по якорям
+  (function () {
+    var q = new URLSearchParams(location.search), saved = {};
+    try { saved = JSON.parse(sessionStorage.getItem('sintekUtm') || '{}'); } catch (e) {}
+    UTM_KEYS.forEach(function (k) { if (q.get(k)) saved[k] = q.get(k); });
+    try { sessionStorage.setItem('sintekUtm', JSON.stringify(saved)); } catch (e) {}
+    window.__sintekUtm = saved;
+  })();
+  function sendLead(form) {
+    var fd = new FormData(form), now = new Date();
+    var tz = { timeZone: 'Asia/Almaty' };
+    var utm = window.__sintekUtm || {};
+    var src = fd.get('source') || '';
+    var lead = {
+      date: now.toLocaleDateString('ru-RU', tz),
+      time: now.toLocaleTimeString('ru-RU', { timeZone: 'Asia/Almaty', hour: '2-digit', minute: '2-digit' }),
+      name: (fd.get('name') || '').trim(),
+      phone: (fd.get('phone') || '').replace(/\D/g, ''),
+      message: (fd.get('message') || '').trim(),
+      product: fd.get('product') || '',
+      form: FORM_NAMES[src] || src,
+      source: utm.gclid || /google/i.test(utm.utm_source || '') ? 'google' : (utm.utm_source || 'сайт'),
+      page: location.origin + location.pathname
+    };
+    UTM_KEYS.forEach(function (k) { lead[k] = utm[k] || ''; });
+    if (!LEAD_WEBHOOK) { console.warn('LEAD_WEBHOOK не задан, заявка не отправлена', lead); return; }
+    var body = new URLSearchParams(lead);
+    try {
+      fetch(LEAD_WEBHOOK, { method: 'POST', mode: 'no-cors', keepalive: true, body: body });
+    } catch (e) {
+      if (navigator.sendBeacon) navigator.sendBeacon(LEAD_WEBHOOK, body);
+    }
+    // конверсия Google Ads — подключим, когда будет аккаунт:
+    // if (window.gtag) gtag('event', 'conversion', { send_to: 'AW-XXXXXXXXX/XXXXXXXX' });
+  }
+
   // ---- отправка форм
   $$('.js-form').forEach(function (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var phone = form.querySelector('input[type="tel"]');
       if (phone.value.replace(/\D/g, '').length < 11) { phone.classList.add('err'); phone.focus(); return; }
-      var data = Object.fromEntries(new FormData(form));
-      // TODO: подключить отправку заявки (CRM / Telegram-бот / почта)
-      // и конверсию Google Ads: gtag('event', 'conversion', {send_to: 'AW-XXXXXXX/XXXX'});
-      console.log('lead', data);
+      sendLead(form);
       form.classList.add('sent');
       try { sessionStorage.setItem('sintekSent', '1'); } catch (err) {}
       if (form.closest('.js-modal')) setTimeout(closeModal, 3500);
