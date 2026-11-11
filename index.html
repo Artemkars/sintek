@@ -2,20 +2,6 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<!-- Google tag (Google Ads) -->
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-52KN7QLV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WHFCL5XB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-</script>
-<!-- End Google tag -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Подсистема для вентфасада от производителя — Sintek</title>
 <meta name="description" content="Отечественный производитель подсистем для вентфасада: кронштейны, профили и кляммеры из оцинкованной стали. Без посредников, всё в наличии. Завод в Темиртау, склад в Алматы.">
@@ -1419,13 +1405,7 @@ body.modal-open{overflow:hidden}
     } catch (e) {
       if (navigator.sendBeacon) navigator.sendBeacon(LEAD_WEBHOOK, body);
     }
-    // событие для GTM: триггер «Пользовательское событие» = lead_form_submit
-    window.dataLayer = window.dataLayer || [];
-    dataLayer.push({ event: 'lead_form_submit', lead_form: lead.form, lead_source: lead.source });
-    // конверсия Google Ads «Отправка формы для потенциальных клиентов»
-    if (typeof gtag === 'function') {
-      gtag('event', 'conversion', { send_to: 'AW-18472042706/FN0tCO3p0LUdENKBlOhE', value: 1.0, currency: 'USD' });
-    }
+
   }
 
   // ---- отправка форм
