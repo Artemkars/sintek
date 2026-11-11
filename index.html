@@ -2,14 +2,14 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-WHFCL5XB');
-window.gtag=window.gtag||function(){dataLayer.push(arguments);};</script>
-<!-- End Google Tag Manager -->
+<!-- Google tag (Google Ads) -->
+<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-52KN7QLV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+</script>
+<!-- End Google tag -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Подсистема для вентфасада от производителя — Sintek</title>
 <meta name="description" content="Отечественный производитель подсистем для вентфасада: кронштейны, профили и кляммеры из оцинкованной стали. Без посредников, всё в наличии. Завод в Темиртау, склад в Алматы.">
@@ -717,9 +717,6 @@ body.modal-open{overflow:hidden}
 </style>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WHFCL5XB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
 
 <header class="top">
   <div class="wrap">
@@ -1419,6 +1416,10 @@ body.modal-open{overflow:hidden}
     // событие для GTM: триггер «Пользовательское событие» = lead_form_submit
     window.dataLayer = window.dataLayer || [];
     dataLayer.push({ event: 'lead_form_submit', lead_form: lead.form, lead_source: lead.source });
+    // конверсия Google Ads «Отправка формы для потенциальных клиентов»
+    if (typeof gtag === 'function') {
+      gtag('event', 'conversion', { send_to: 'AW-18472042706/FN0tCO3p0LUdENKBlOhE', value: 1.0, currency: 'USD' });
+    }
   }
 
   // ---- отправка форм
